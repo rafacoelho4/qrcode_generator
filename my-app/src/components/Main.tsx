@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './Main.css';
-// import { useQRCodeData } from '../hooks/qrcodedata';
 
 import api from '../services/api';
 
 function Main() {
 
     const [ web_url, setWebURL ] = useState(''); 
-    const [ remember, setRemember ] = useState(false); 
     const [ response, setResponse ] = useState('');
-
-    function handleRemember(e: any) {
-        e.preventDefault();
-        setRemember(e.target.value);
-    }
 
     function handleLink(e: any) {
         e.preventDefault();
@@ -30,7 +22,6 @@ function Main() {
                 console.log(res);
 
                 setWebURL("");
-                setRemember(false);
                 setResponse(res.data.slice(0, -1));
 
                 console.log(res.data.slice(0, -1))
@@ -70,19 +61,6 @@ function Main() {
                             onChange={handleLink}
                             />
                     </div>
-                    {/* <div className="input-block lembrar-senha">
-                        <div className="checkbox-container" >
-                            <input 
-                                type="checkbox" 
-                                name="checkbox-lembrar"
-                                id="checkbox"
-                                className="checkbox"
-                                checked={remember}
-                                onChange={() => setRemember(!remember)}
-                                />
-                            <label htmlFor="checkbox" >Salvar no histórico</label>
-                        </div>
-                    </div> */}
                 </fieldset>
 
                 <button className="confirm-button" type="submit" onClick={e => handleSubmit(e)}>
